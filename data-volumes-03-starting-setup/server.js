@@ -30,7 +30,7 @@ app.post('/create', async (req, res) => {
 
   const tempFilePath = path.join(__dirname, 'temp', adjTitle + '.txt');
   const finalFilePath = path.join(__dirname, 'feedback', adjTitle + '.txt');
-
+  console.log("created");
   await fs.writeFile(tempFilePath, content);
   exists(finalFilePath, async (exists) => {
     if (exists) {
@@ -40,6 +40,9 @@ app.post('/create', async (req, res) => {
       await fs.copyFile(tempFilePath, finalFilePath);
       await fs.unlink(tempFilePath);
       res.redirect('/');
+
+      console.log("created");
+
     }
   });
 });
